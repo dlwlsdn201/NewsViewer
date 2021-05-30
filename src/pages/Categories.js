@@ -31,13 +31,18 @@ const data = [
 ];
 
 const NavMenuContainer = styled.div`
-
+    display: flex;
+    justify-content: center;
 `;
 
 const NavMenuList = styled.ul`
+    width: 90%;
     display: flex;
     list-style: none;
+    color: white;
     justify-content: space-around;
+    border: 1px solid #dca7ff;
+    padding: 1% 0;
 `;
 
 const NavMenuItem = styled.li`

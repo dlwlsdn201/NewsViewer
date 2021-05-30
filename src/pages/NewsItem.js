@@ -2,40 +2,41 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NewsItemContainer = styled.li`
-    width: 90%;
-    border: 1px solid red;
+    width: 95%;
+    height: 10vw;
     display: flex;
-
+    background: #424242;
     & + & {
         margin: 1% 0;
     }
 `;
 
 const ThumbnailWrapper = styled.div`
-    flex: 0.3;
-    background: lightcyan;
+    flex: 0.2;
+    overflow: hidden;
 `
 ;
-const ThumnailBlock = styled.div`
+const ThumnailImage = styled.img`
+    max-width: 100%;
+    min-height: 100%;
+    object-fit: fill;
 `;
 
 const ContentWrapper = styled.div`
-    flex: 0.7;
+    flex: 0.8;
     display: inherit;
     flex-direction: column;
-    background: gray;
+    color: white;
 `;
 
-const TitleBlock = styled.h1`
-    text-align: center;
+const TitleBlock = styled.h2`
+    text-align: left;
     margin: 0;
     padding: 0;
 `
 
 const DescriptionBlock = styled.p`
     text-align: left;
-    border: 1px dashed blue;
-    color: blue;
 `
 
 const PublishedDateBlock = styled.p`
@@ -45,24 +46,25 @@ const PublishedDateBlock = styled.p`
 `
 
 
-const NewsItem = () => {
+const NewsItem = ({article}) => {
+    
+    const { urlToImage, url, title, description, publishedAt} = article;
+    
     return (
         <NewsItemContainer>
             <ThumbnailWrapper>
-                <ThumnailBlock>
-                    썸네일
-                </ThumnailBlock>
+                <ThumnailImage src={urlToImage}/>
             </ThumbnailWrapper>
             <ContentWrapper>
-            <TitleBlock>
-                제목
-            </TitleBlock>
-            <DescriptionBlock>
-                설명
-            </DescriptionBlock>
-            <PublishedDateBlock>
-                게시일
-            </PublishedDateBlock>
+                <TitleBlock>
+                    {title}
+                </TitleBlock>
+                <DescriptionBlock>
+                    {description}
+                </DescriptionBlock>
+                <PublishedDateBlock>
+                    {publishedAt}
+                </PublishedDateBlock>
             </ContentWrapper>
         </NewsItemContainer>    
     );
