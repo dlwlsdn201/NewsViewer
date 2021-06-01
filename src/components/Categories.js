@@ -46,6 +46,21 @@ const NavMenuList = styled.ul`
 `;
 
 const NavMenuItem = styled.li`
+    display: flex;
+    justify-content: center;
+    word-break: keep-all;
+    width: 6.5vw;
+    &:hover {
+        cursor: pointer;
+        position: relative;
+        &::after {
+            position: absolute;
+            content : "";
+            bottom: -10%;
+            width: 3vw;
+            border-top: 1px solid #73b4ff;
+        }
+    }
 `;
 
 
