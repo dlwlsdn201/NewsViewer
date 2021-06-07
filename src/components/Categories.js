@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import {NavLink} from 'react-router-dom';
 
-
-
+//name : 실제 카테고리 값
+//text : 렌더링 시 사용될 한글 문자
 const data = [
     {
         name: 'all',
@@ -45,11 +46,12 @@ const NavMenuList = styled.ul`
     padding: 1% 0;
 `;
 
-const NavMenuItem = styled.li`
+const NavMenuItem = styled(NavLink)`
     display: flex;
     justify-content: center;
     word-break: keep-all;
     width: 6.5vw;
+    text-decoration: none;
     &:hover {
         cursor: pointer;
         position: relative;
@@ -61,6 +63,17 @@ const NavMenuItem = styled.li`
             border-top: 1px solid #73b4ff;
         }
     }
+    &:link {
+        color: white;
+    }
+
+    &:visited {
+        color: white;
+    }
+
+    &:active {
+        color: #73b4ff;
+    }
 `;
 
 
@@ -69,12 +82,16 @@ const Categories = () => {
     return (
         <NavMenuContainer>
             <NavMenuList>
-                <NavMenuItem>전체보기</NavMenuItem>
-                <NavMenuItem>비즈니스</NavMenuItem>
-                <NavMenuItem>엔터테이먼트</NavMenuItem>
-                <NavMenuItem>건강</NavMenuItem>
-                <NavMenuItem>과학</NavMenuItem>
-                <NavMenuItem>스포츠</NavMenuItem>
+                {data.map(c=> (
+                    <NavMenuItem
+                        to={c.name === 'all'? '/' : `/${c.name}`}
+                        key={c.name}
+                        exact={c.name==='all'}
+                        activeClassName='active'
+                    >
+                            {c.text}
+                    </NavMenuItem>
+                ))}
             </NavMenuList>
         </NavMenuContainer>
     );

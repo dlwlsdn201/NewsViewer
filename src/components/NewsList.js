@@ -27,7 +27,7 @@ const NewsListWrapper = styled.ul`
 
 
 
-const NewsList = () => {
+const NewsList = ({category}) => {
     const API_KEY = 'f72290af08794eafb2893b02b4f21a5e';
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -38,19 +38,21 @@ const NewsList = () => {
         const LoadData = async () => {
             setLoading(true);
             try{
-                const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`,);
+                const query = category === 'all' ? '' : `&category=${category}`;
+                const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=${API_KEY}`,);
                 setData(response.data.articles);
+                console.log(response.data.articles);
             }catch(e){
                 console.log(`error:${e}`);
             }
             setLoading(false);
         };
         LoadData();
-    }, []);
+    }, [category]);
 
     // console.log(data);
     if(loading){
-        return <NewsListContainer>데이터 로드 중... </NewsListContainer>
+        return <NewsListContainer>데이터 로드 중..</NewsListContainer>
     };
 
     if(!data) {

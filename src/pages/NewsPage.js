@@ -14,12 +14,14 @@ const NewsPageInner = styled.div`
     
 `;
 
-const NewsPage = () => {
+const NewsPage = ({match}) => {
+    const category = match.params.category || 'all';
+
     return (
         <NewsPageContainer>
             <NewsPageInner>
                 <Categories/>
-                <NewsList/>
+                <NewsList category={category}/>
             </NewsPageInner>
         </NewsPageContainer>
     );
