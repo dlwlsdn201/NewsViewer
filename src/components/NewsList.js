@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import axios from 'axios';
 import NewsItem from './NewsItem';
 import styled from 'styled-components';
 import usePromise from '../lib/usePromise';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const NewsListContainer = styled.div`
     display: flex;
@@ -59,9 +60,11 @@ const NewsList = ({category}) => {
     // }, [category]);
 
     // console.log(data);
-    if(loading){
-        return <NewsListContainer>데이터 로드 중..</NewsListContainer>
-    };
+    // if(loading){
+    //     return <NewsListContainer>
+
+    //     </NewsListContainer>
+    // };
 
     //아직 response가 정의되지 않았을 때
     if(!response) {
@@ -78,11 +81,16 @@ const NewsList = ({category}) => {
 
     const { articles } = response.data;
     return (
+        (loading ?
+        <Skeleton/> : 
         <NewsListContainer>
             <NewsListWrapper>
-                {articles.map(article=> (<NewsItem key={article.url} article={article}/>))}
+                {articles.map(article=>
+                    <NewsItem key={article.url} article={article}/> 
+                )}
             </NewsListWrapper>
         </NewsListContainer>
+        )
     );
 };
 

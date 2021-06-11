@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const NewsItemContainer = styled.li`
     width: 95%;
@@ -57,7 +58,10 @@ const NewsItem = ({article}) => {
             </ThumbnailWrapper>
             <ContentWrapper>
                 <TitleBlock>
-                    {title}
+                    {   title?
+                        title:
+                        <Skeleton width="70%"/>
+                    }
                 </TitleBlock>
                 <DescriptionBlock>
                     {description}
