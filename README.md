@@ -1,8 +1,8 @@
-# News Viewer (Self Project #6) ----(working)
+# News Viewer (Self Project #6) ----(preparing)
   * Created by React*
 
 ## **Preview**
-![Preview](https://user-images.githubusercontent.com/53039583/107867568-3c098d80-6ebf-11eb-8eba-a45836613878.png)
+
 
 
 ## **Features**
