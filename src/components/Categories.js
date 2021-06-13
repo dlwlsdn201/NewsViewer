@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
+import Palette from '../lib/Palette';
 
 //name : 실제 카테고리 값
 //text : 렌더링 시 사용될 한글 문자
@@ -40,7 +41,7 @@ const NavMenuList = styled.ul`
     width: 90%;
     display: flex;
     list-style: none;
-    color: white;
+    color: ${Palette.fontColor};
     justify-content: space-around;
     border: 1px solid #dca7ff;
     padding: 1% 0;
@@ -60,7 +61,7 @@ const NavMenuItem = styled(NavLink)`
             content : "";
             bottom: -10%;
             width: 3vw;
-            border-top: 1px solid #73b4ff;
+            border-top: 1px solid ${Palette.highlight};
         }
     }
     &:link {

@@ -22,7 +22,7 @@ const NewsListWrapper = styled.ul`
     display: flex;
     /* flex-flow: column wrap; */
     flex-wrap: wrap;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
     list-style: none;
     border: 2px solid green;

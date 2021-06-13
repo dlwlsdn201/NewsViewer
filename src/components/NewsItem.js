@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Skeleton from '@material-ui/lab/Skeleton';
+import Palette from '../lib/Palette';
 
 const Device = {
     // device-width
@@ -32,9 +33,14 @@ const NewsItemContainer = styled.li`
     justify-content: center;
     align-items: space-between;
     padding: 1%;
-    background: #424242;
+    background: ${Palette.wrapper};
+    color: ${Palette.fontColor};
     & + & {
         margin: 2% 0;
+    }
+
+    &:nth-child(3n+2){
+        margin: 0 2%;
     }
 
     @media screen and (max-width: ${Boundary.$UNDER_TABLET}){
@@ -127,7 +133,7 @@ const PublishedDateBlock = styled.p`
     text-align: right;
     align-self: flex-end;
     margin: 0;
-    color: yellow;
+    opacity: 0.2;
     flex: 0.1;
 `
 
@@ -142,25 +148,29 @@ const NewsItem = ({article}) => {
         '요약 데이터 없음';
 
     return (
-        <NewsItemContainer>
-            <ContentWrapper>
-                <TitleBlock>
-                    {   title?
-                        title:
-                        <Skeleton width="70%"/>
-                    }
-                </TitleBlock>
-                <ThumbnailBlock>
-                    <ThumnailImage src={urlToImage}/>
-                </ThumbnailBlock>
-                <DescriptionBlock>
-                    {summaryDesc}
-                </DescriptionBlock>
-                <PublishedDateBlock>
-                    {publishedAt}
-                </PublishedDateBlock>
-            </ContentWrapper>
-        </NewsItemContainer>    
+        (urlToImage && title && description ?
+            <NewsItemContainer>
+                <ContentWrapper>
+                    <TitleBlock>
+                        {   title?
+                            title:
+                            <Skeleton width="70%"/>
+                        }
+                    </TitleBlock>
+                    <ThumbnailBlock>
+                        <ThumnailImage src={urlToImage}/>
+                    </ThumbnailBlock>
+                    <DescriptionBlock>
+                        {summaryDesc}
+                    </DescriptionBlock>
+                    <PublishedDateBlock>
+                        {publishedAt}
+                    </PublishedDateBlock>
+                </ContentWrapper>
+            </NewsItemContainer>    
+            :
+            false    
+            )
     );
 };
 
