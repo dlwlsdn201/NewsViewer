@@ -20,11 +20,13 @@ const NewsListContainer = styled.div`
 const NewsListWrapper = styled.ul`
     width: 90%;
     display: flex;
-    flex-flow: column wrap;
+    /* flex-flow: column wrap; */
+    flex-wrap: wrap;
+    justify-content: space-around;
     align-items: center;
     list-style: none;
     border: 2px solid green;
-    padding: 1% 0;
+    padding: 1% 2%;
 `
 
 
