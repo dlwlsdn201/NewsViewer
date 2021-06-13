@@ -82,6 +82,7 @@ const NewsList = ({category}) => {
     // }
 
     const { articles } = response.data;
+    console.log(response.data);
     return (
         (loading ?
         <Skeleton/> : 

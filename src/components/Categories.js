@@ -35,6 +35,8 @@ const data = [
 const NavMenuContainer = styled.div`
     display: flex;
     justify-content: center;
+    background: ${Palette.wrapper};
+    font-size: 1.4rem;
 `;
 
 const NavMenuList = styled.ul`
@@ -43,8 +45,8 @@ const NavMenuList = styled.ul`
     list-style: none;
     color: ${Palette.fontColor};
     justify-content: space-around;
-    border: 1px solid #dca7ff;
     padding: 1% 0;
+    margin: 0;
 `;
 
 const NavMenuItem = styled(NavLink)`

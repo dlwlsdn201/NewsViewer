@@ -25,13 +25,14 @@ const Boundary = {
 }
 
 
-const NewsItemContainer = styled.li`
+const NewsItemContainer = styled.a`
     width: 25vw;
     height: 25vw;
     display: flex;
-    border-radius: 4px;
+    border-radius: 5px;
     justify-content: center;
     align-items: space-between;
+    text-decoration: none;
     padding: 1%;
     background: ${Palette.wrapper};
     color: ${Palette.fontColor};
@@ -41,6 +42,10 @@ const NewsItemContainer = styled.li`
 
     &:nth-child(3n+2){
         margin: 0 2%;
+    }
+
+    &:hover {
+        background: ${Palette.wrapperHover};
     }
 
     @media screen and (max-width: ${Boundary.$UNDER_TABLET}){
@@ -70,7 +75,8 @@ const ThumbnailBlock = styled.div`
 `
 ;
 const ThumnailImage = styled.img`
-    max-width: 100%;
+    min-width: 80%;
+    max-width: 80%;
     max-height: 100%;
     object-fit: fill;
 `;
@@ -84,7 +90,7 @@ const TitleBlock = styled.div`
     flex: 0.1;
     
     @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}){
-        font-size: 1vw;
+        font-size: 1.1vw;
     }
     @media screen and (min-width: ${Boundary.$OVER_TABLET}) and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
 
@@ -143,13 +149,13 @@ const NewsItem = ({article}) => {
     const { urlToImage, url, title, description, publishedAt} = article;
 
 
-    const summaryDesc = description && description.length > 50 ?
-        `${description.slice(0,72)}...` :
-        '요약 데이터 없음';
-
+    const summaryDesc = description && description.length > 80?
+        `${description.slice(0,80)}...` :
+        description
+    console.log(unescape(escape(description)));
     return (
-        (urlToImage && title && description ?
-            <NewsItemContainer>
+        (urlToImage && title && description && description !== "" ?
+            <NewsItemContainer href={url} target="_blank">
                 <ContentWrapper>
                     <TitleBlock>
                         {   title?
