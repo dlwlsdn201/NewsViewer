@@ -37,6 +37,7 @@ const NavMenuContainer = styled.div`
     justify-content: center;
     background: ${Palette.wrapper};
     font-size: 1.4rem;
+    border-radius: 5px;
 `;
 
 const NavMenuList = styled.ul`
@@ -55,6 +56,12 @@ const NavMenuItem = styled(NavLink)`
     word-break: keep-all;
     width: 6.5vw;
     text-decoration: none;
+    
+    &::after{ 
+        content: "";
+        width: 0;
+    }
+
     &:hover {
         cursor: pointer;
         position: relative;
@@ -64,6 +71,7 @@ const NavMenuItem = styled(NavLink)`
             bottom: -10%;
             width: 3vw;
             border-top: 1px solid ${Palette.highlight};
+            transition: width .3s ease;
         }
     }
     &:link {
