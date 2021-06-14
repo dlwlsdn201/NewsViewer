@@ -38,6 +38,7 @@ const NavMenuContainer = styled.div`
     background: ${Palette.wrapper};
     font-size: 1.4rem;
     border-radius: 5px;
+    width: 90%;
 `;
 
 const NavMenuList = styled.ul`
@@ -48,6 +49,7 @@ const NavMenuList = styled.ul`
     justify-content: space-around;
     padding: 1% 0;
     margin: 0;
+    
 `;
 
 const NavMenuItem = styled(NavLink)`

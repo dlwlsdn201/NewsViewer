@@ -13,7 +13,7 @@ const NewsListContainer = styled.div`
     width: 100%;
     height: 100%;
     color: white;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     border-radius: 10px; 
 `;
 
@@ -25,7 +25,7 @@ const NewsListWrapper = styled.ul`
     /* justify-content: space-around; */
     align-items: center;
     list-style: none;
-    border: 2px solid green;
+    /* border: 2px solid green; */
     padding: 1% 2%;
 `
 
