@@ -35,7 +35,7 @@ const NewsItemContainer = styled.a`
     text-decoration: none;
     padding: 1%;
     background: ${Palette.wrapper};
-    color: ${Palette.fontColor};
+
     & + & {
         margin: 2% 0;
     }
@@ -77,7 +77,7 @@ const ThumbnailBlock = styled.div`
 `
 ;
 const ThumnailImage = styled.img`
-    min-width: 80%;
+    min-width: 40%;
     max-width: 80%;
     max-height: 100%;
     object-fit: fill;
@@ -141,12 +141,12 @@ const PublishedDateBlock = styled.p`
     text-align: right;
     align-self: flex-end;
     margin: 0;
-    opacity: 0.2;
     flex: 0.1;
-`
+    opacity: 0.2;
+`;
 
 
-const NewsItem = ({article}) => {
+const NewsItem = ({article, loading}) => {
     
     const { urlToImage, url, title, description, publishedAt} = article;
 
@@ -154,16 +154,15 @@ const NewsItem = ({article}) => {
     const summaryDesc = description && description.length > 80?
         `${description.slice(0,80)}...` :
         description
-    console.log(unescape(escape(description)));
+
+        console.log(`urlToImage title description description loading: ${urlToImage}, ${title}, ${description}, ${description}, ${loading}}`);
     return (
         (urlToImage && title && description && description !== "" ?
+            (!loading?
             <NewsItemContainer href={url} target="_blank">
                 <ContentWrapper>
                     <TitleBlock>
-                        {   title?
-                            title:
-                            <Skeleton width="70%"/>
-                        }
+                        {title}
                     </TitleBlock>
                     <ThumbnailBlock>
                         <ThumnailImage src={urlToImage}/>
@@ -175,9 +174,26 @@ const NewsItem = ({article}) => {
                         {publishedAt}
                     </PublishedDateBlock>
                 </ContentWrapper>
+            </NewsItemContainer> :
+            <NewsItemContainer>
+            <ContentWrapper style={{width: "80%"}}>
+                <TitleBlock style={{paddingTop:"0"}}>
+                    <Skeleton variant="text" width="100%" height={100} animation='wave'/>
+                </TitleBlock>
+                <ThumbnailBlock style={{height: "100%", marginBottom: 0}}>
+                    <Skeleton variant="rect" width="100%" height="auto" animation='wave'/>
+                </ThumbnailBlock>
+                <DescriptionBlock style={{marginTop: "0.5vw"}}>
+                    <Skeleton variant="text" height={100} animation='wave'/>
+                </DescriptionBlock>
+                <PublishedDateBlock style={{opacity: 1}}>
+                    <Skeleton variant="text" width={220} height={30} animation='wave'/>
+                </PublishedDateBlock>
+            </ContentWrapper>
             </NewsItemContainer>    
-            :
-            false    
+            )
+            : false
+           
             )
     );
 };

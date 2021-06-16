@@ -84,16 +84,23 @@ const NewsList = ({category}) => {
     const { articles } = response.data;
     console.log(response.data);
     return (
-        (loading ?
-        <Skeleton/> : 
+        // (loading ?
+        //     <NewsListContainer>
+        //     <NewsListWrapper>
+        //         {articles.map(article=>
+        //             <NewsItem key={article.url} article={article}/> 
+        //         )}
+        //     </NewsListWrapper>
+        // </NewsListContainer>
+        // : 
         <NewsListContainer>
             <NewsListWrapper>
                 {articles.map(article=>
-                    <NewsItem key={article.url} article={article}/> 
+                    <NewsItem key={article.url} article={article} loading={loading}/> 
                 )}
             </NewsListWrapper>
         </NewsListContainer>
-        )
+        // )
     );
 };
 
