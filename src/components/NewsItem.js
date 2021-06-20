@@ -49,8 +49,8 @@ const NewsItemContainer = styled.a`
 
     &:hover {
         background: ${Palette.highlight};
-        transform: translate(10px, -10px);
-        transition: transform 1s ease, background .5s ease;
+        transform: translateY(-10px) scale(1.05);
+        transition: transform .8s ease, background .5s ease;
         /* transition: ; */
     }
 
