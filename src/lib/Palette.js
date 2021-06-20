@@ -1,9 +1,8 @@
 const Palette = {
-    background: "#132c33",
-    wrapper: "#2b7788",
-    wrapperHover: "#15768b",
-    highlight: "#08cce6",
-    fontColor: "#d8e3e7"
+    background: "#222831",
+    wrapper: "#393E46",
+    highlight: "#00ADB5",
+    fontColor: "#EEEEEE"
 };
 
 export default Palette;

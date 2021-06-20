@@ -45,9 +45,10 @@ const NewsItemContainer = styled.a`
     }
 
     &:hover {
-        background: ${Palette.wrapperHover};
-        transform: translateY(-10px);
-        transition: transform .5s ease;
+        background: ${Palette.highlight};
+        transform: translate(10px, -10px);
+        transition: transform 1s ease, background .5s ease;
+        /* transition: ; */
     }
 
     @media screen and (max-width: ${Boundary.$UNDER_TABLET}){
