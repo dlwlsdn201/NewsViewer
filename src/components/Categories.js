@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import {NavLink} from 'react-router-dom';
+import Palette from '../lib/Palette';
+import {Device, Boundary} from '../lib/Device';
+import FontSize from '../lib/FontSize';
 
 
 
+//name : 실제 카테고리 값
+//text : 렌더링 시 사용될 한글 문자
 const data = [
     {
         name: 'all',
@@ -33,23 +39,39 @@ const data = [
 const NavMenuContainer = styled.div`
     display: flex;
     justify-content: center;
+    background: ${Palette.wrapper};
+    font-size: 1.4rem;
+    border-radius: 5px;
+    width: 90%;
+
+    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+        font-size : ${FontSize.$TABLET_Title};
+    }
 `;
 
 const NavMenuList = styled.ul`
     width: 90%;
     display: flex;
     list-style: none;
-    color: white;
+    color: ${Palette.fontColor};
     justify-content: space-around;
-    border: 1px solid #dca7ff;
     padding: 1% 0;
+    margin: 0;
+    
 `;
 
-const NavMenuItem = styled.li`
+const NavMenuItem = styled(NavLink)`
     display: flex;
     justify-content: center;
     word-break: keep-all;
     width: 6.5vw;
+    text-decoration: none;
+    
+    &::after{ 
+        content: "";
+        width: 0;
+    }
+
     &:hover {
         cursor: pointer;
         position: relative;
@@ -58,8 +80,20 @@ const NavMenuItem = styled.li`
             content : "";
             bottom: -10%;
             width: 3vw;
-            border-top: 1px solid #73b4ff;
+            border-top: 1px solid ${Palette.highlight};
+            transition: width .3s ease;
         }
+    }
+    &:link {
+        color: white;
+    }
+
+    &:visited {
+        color: white;
+    }
+
+    &:active {
+        color: #73b4ff;
     }
 `;
 
@@ -69,12 +103,16 @@ const Categories = () => {
     return (
         <NavMenuContainer>
             <NavMenuList>
-                <NavMenuItem>전체보기</NavMenuItem>
-                <NavMenuItem>비즈니스</NavMenuItem>
-                <NavMenuItem>엔터테이먼트</NavMenuItem>
-                <NavMenuItem>건강</NavMenuItem>
-                <NavMenuItem>과학</NavMenuItem>
-                <NavMenuItem>스포츠</NavMenuItem>
+                {data.map(c=> (
+                    <NavMenuItem
+                        to={c.name === 'all'? '/' : `/${c.name}`}
+                        key={c.name}
+                        exact={c.name==='all'}
+                        activeClassName='active'
+                    >
+                            {c.text}
+                    </NavMenuItem>
+                ))}
             </NavMenuList>
         </NavMenuContainer>
     );
