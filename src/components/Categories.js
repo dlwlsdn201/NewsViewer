@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 import Palette from '../lib/Palette';
+import {Device, Boundary} from '../lib/Device';
+import FontSize from '../lib/FontSize';
+
+
 
 //name : 실제 카테고리 값
 //text : 렌더링 시 사용될 한글 문자
@@ -39,6 +43,10 @@ const NavMenuContainer = styled.div`
     font-size: 1.4rem;
     border-radius: 5px;
     width: 90%;
+
+    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+        font-size : ${FontSize.$TABLET_Title};
+    }
 `;
 
 const NavMenuList = styled.ul`

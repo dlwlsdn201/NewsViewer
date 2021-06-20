@@ -2,27 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Palette from '../lib/Palette';
+import {Device, Boundary} from '../lib/Device';
+import FontSize from '../lib/FontSize';
 
-const Device = {
-    // device-width
-    $IPHONE5 : 320,
-    $MOBILE : 480,
-    $TABLET : 768,
-    $NOTEBOOK: 1060,
-    $DESKTOP: 1920,
-}
+// const Device = {
+//     // device-width
+//     $IPHONE5 : 320,
+//     $MOBILE : 480,
+//     $TABLET : 768,
+//     $NOTEBOOK: 1060,
+//     $DESKTOP: 1920,
+// }
 
 
-const Boundary = {
-    $OVER_IPHONE5 : `${Device.$IPHONE5 + 1}px`,
-    $OVER_MOBILE : `${Device.$MOBILE + 1}px`,
-    $OVER_TABLET : `${Device.$TABLET + 1}px`,
-    $OVER_NOTEBOOK : `${Device.$NOTEBOOK + 1}px`,
-    $UNDER_DESKTOP : `${Device.$DESKTOP}px`,
-    $UNDER_NOTEBOOK : `${Device.$NOTEBOOK}px`,
-    $UNDER_TABLET : `${Device.$TABLET}px`,
-    $UNDER_IPHONE5 : `${Device.$IPHONE5}px`,
-}
+
+// const Boundary = {
+//     $OVER_IPHONE5 : `${Device.$IPHONE5 + 1}px`,
+//     $OVER_MOBILE : `${Device.$MOBILE + 1}px`,
+//     $OVER_TABLET : `${Device.$TABLET + 1}px`,
+//     $OVER_NOTEBOOK : `${Device.$NOTEBOOK + 1}px`,
+//     $UNDER_DESKTOP : `${Device.$DESKTOP}px`,
+//     $UNDER_NOTEBOOK : `${Device.$NOTEBOOK}px`,
+//     $UNDER_TABLET : `${Device.$TABLET}px`,
+//     $UNDER_IPHONE5 : `${Device.$IPHONE5}px`,
+// }
 
 
 const NewsItemContainer = styled.a`
@@ -51,8 +54,10 @@ const NewsItemContainer = styled.a`
         /* transition: ; */
     }
 
-    @media screen and (max-width: ${Boundary.$UNDER_TABLET}){
-        height: 20vw;
+    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+        width: 24vw;
+        height: 35vw;
+        padding: 1.5% 1.7% 0;
     }
 `;
 
@@ -60,6 +65,7 @@ const ContentWrapper = styled.div`
     padding: 1% 3%;
     display: inherit;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     color: white;
 
@@ -75,11 +81,16 @@ const ThumbnailBlock = styled.div`
     display: inherit;
     justify-content: center;
     flex: 0.7;
+
+    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+        width: 20vw;
+        height: 20vw;
+    }
 `
 ;
 const ThumnailImage = styled.img`
     min-width: 40%;
-    max-width: 80%;
+    max-width: 100%;
     max-height: 100%;
     object-fit: fill;
 `;
@@ -91,30 +102,13 @@ const TitleBlock = styled.div`
     margin: 0;
     padding: 0;
     flex: 0.1;
-    
-    @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}){
-        font-size: 1.1vw;
-    }
-    @media screen and (min-width: ${Boundary.$OVER_TABLET}) and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
-
+    /* @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}){
+    } */
+    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+        font-size: ${FontSize.$TABLET_Title};
     }
 
     @media screen and (min-width: ${Boundary.$OVER_IPHONE5}) and (max-width: ${Boundary.$UNDER_TABLET}){}
-
-    
-    @media screen and (max-width: ${Boundary.$UNDER_IPHONE5}){}
-
-/*   
-    @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}){
-    }
-
-    @media screen and (min-width: ${Boundary.$OVER_TABLET}) and (max-width: ${Boundary.$UNDER_NOTEBOOK}){}
-
-    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}) and (max-width: ${Boundary.$UNDER_TABLET}){}
-
-    
-    @media screen and (max-width: ${Boundary.$UNDER_IPHONE5}){} */
-
 `
 
 const DescriptionBlock = styled.p`
@@ -122,19 +116,21 @@ const DescriptionBlock = styled.p`
     margin: 1% 0;
     flex: 0.2;
     
-    @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}){
+    /* @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}){
         font-size: 1rem;
+    } */
+
+    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+        font-size : ${FontSize.$TABLET_Text};
     }
 
-    @media screen and (min-width: ${Boundary.$OVER_TABLET}) and (max-width: ${Boundary.$UNDER_NOTEBOOK}){}
-
-    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}) and (max-width: ${Boundary.$UNDER_TABLET}){
+    /* @media screen and (min-width: ${Boundary.$OVER_IPHONE5}) and (max-width: ${Boundary.$UNDER_TABLET}){
         overflow-y: hidden;
         margin: 0;
     }
 
     
-    @media screen and (max-width: ${Boundary.$UNDER_IPHONE5}){}
+    @media screen and (max-width: ${Boundary.$UNDER_IPHONE5}){} */
 
 `
 
@@ -144,6 +140,10 @@ const PublishedDateBlock = styled.p`
     margin: 0;
     flex: 0.1;
     opacity: 0.2;
+
+    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+        font-size : ${FontSize.$TABLET_PublishedAt};
+    }
 `;
 
 

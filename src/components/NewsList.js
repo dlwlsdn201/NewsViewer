@@ -3,7 +3,8 @@ import axios from 'axios';
 import NewsItem from './NewsItem';
 import styled from 'styled-components';
 import usePromise from '../lib/usePromise';
-import Skeleton from '@material-ui/lab/Skeleton';
+import {Device, Boundary} from '../lib/Device';
+import FontSize from '../lib/FontSize';
 
 const NewsListContainer = styled.div`
     display: flex;
@@ -27,6 +28,10 @@ const NewsListWrapper = styled.ul`
     list-style: none;
     /* border: 2px solid green; */
     padding: 1% 2%;
+
+    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+       justify-content: space-between;
+    }
 `
 
 
