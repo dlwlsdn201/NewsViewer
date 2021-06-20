@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle `
         padding: 0;
         font-family: 'Nanum Myeongjo';
         color: ${Palette.fontColor};
+        overflow-x: hidden;
     }
 `
 

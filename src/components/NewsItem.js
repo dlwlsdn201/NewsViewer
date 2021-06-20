@@ -29,22 +29,27 @@ import FontSize from '../lib/FontSize';
 
 
 const NewsItemContainer = styled.a`
-    width: 25vw;
+    width: 29%;
     height: 25vw;
     display: flex;
     border-radius: 5px;
     justify-content: center;
+    /* flex-wrap: nowrap; */
     align-items: space-between;
     text-decoration: none;
     padding: 1%;
     background: ${Palette.wrapper};
-
+    /* border: 1px solid green; */
     & + & {
         margin: 2% 0;
     }
 
     &:nth-child(3n+2){
-        margin: 0 2%;
+        margin-left: auto;
+    }
+
+    &:nth-child(3n){
+        margin-left: auto;
     }
 
     &:hover {
@@ -54,10 +59,26 @@ const NewsItemContainer = styled.a`
         /* transition: ; */
     }
 
-    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
-        width: 24vw;
+    @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}px){
+        /* width: 24vw; */
+        height: 28vw;
+        padding: 1.5% 1.7% 0;
+        border: 2px solid red;
+    }
+
+    @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
+        /* width: 22vw; */
         height: 35vw;
         padding: 1.5% 1.7% 0;
+        border: 2px solid blue;
+    }
+
+    @media screen and (max-width: ${Boundary.$UNDER_TABLET}px){
+        border: 2px solid green;
+    }
+
+    @media screen and (max-width: ${Boundary.$UNDER_IPHONE5}px){
+        border: 2px solid yellow;
     }
 `;
 
@@ -120,8 +141,10 @@ const DescriptionBlock = styled.p`
         font-size: 1rem;
     } */
 
-    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
-        font-size : ${FontSize.$TABLET_Text};
+
+    @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
+    /* width: 22vw; */
+    font-size : ${FontSize.$TABLET_Text};
     }
 
     /* @media screen and (min-width: ${Boundary.$OVER_IPHONE5}) and (max-width: ${Boundary.$UNDER_TABLET}){
@@ -141,9 +164,11 @@ const PublishedDateBlock = styled.p`
     flex: 0.1;
     opacity: 0.2;
 
-    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+    @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
         font-size : ${FontSize.$TABLET_PublishedAt};
     }
+
+
 `;
 
 
