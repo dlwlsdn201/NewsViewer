@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import NewsList from '../components/NewsList';
 import Categories from '../components/Categories';
 import styled from 'styled-components';
@@ -31,8 +31,49 @@ const NewsPageInner = styled.div`
 
 `;
 
+const ScrollTopButton = styled.div`
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    right: 3%;
+    bottom: 3%;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 10px;
+    border: 1px solid white;
+    opacity: ${props => props.toggle? 1 : 0};
+    transition : opacity .3s ease;
+
+    &:hover { 
+        background: ${Palette.highlight};
+        cursor: pointer;
+        transition : background .3s ease;
+    }
+`
+
+
 const NewsPage = ({match}) => {
+    const [toggle, setToggle] = useState(false);
+    
     const category = match.params.category || 'all';
+
+    const handleScrollTop = () => {
+        window.scrollTo({ top:0, behavior: 'smooth' });
+    }
+
+    const toggleTopButton = (result) => {
+        setToggle()
+    }
+
+    window.addEventListener('scroll', function(){
+        if(window.pageYOffset > 180){
+            setToggle(true);
+        }else {
+            setToggle(false);
+        }
+    });
 
     return (
         <NewsPageContainer>
@@ -44,6 +85,9 @@ const NewsPage = ({match}) => {
             <NewsPageInner>
                 <Categories/>
                 <NewsList category={category}/>
+                <ScrollTopButton toggle={toggle} onClick={handleScrollTop}>
+                    Top
+                </ScrollTopButton>
             </NewsPageInner>
         </NewsPageContainer>
     );
