@@ -1,10 +1,10 @@
 const Device = {
     // device-width
-    $IPHONE5 : '320px',
-    $MOBILE : '480px',
-    $TABLET : '768px',
-    $NOTEBOOK: '1060px',
-    $DESKTOP: '1920px',
+    $IPHONE5 : 320,
+    $MOBILE : 480,
+    $TABLET : 768,
+    $NOTEBOOK: 1060,
+    $DESKTOP: 1920,
 }
 
 

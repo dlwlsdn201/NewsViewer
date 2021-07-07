@@ -44,8 +44,10 @@ const NavMenuContainer = styled.div`
     border-radius: 5px;
     width: 90%;
 
-    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+    @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
+        /* width: 22vw; */
         font-size : ${FontSize.$TABLET_Title};
+        border: 2px solid blue;
     }
 `;
 

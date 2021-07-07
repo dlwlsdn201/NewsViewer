@@ -23,14 +23,13 @@ const NewsListWrapper = styled.ul`
     display: flex;
     /* flex-flow: column wrap; */
     flex-wrap: wrap;
-    /* justify-content: space-around; */
+    justify-content: flex-start;
     align-items: center;
     list-style: none;
-    /* border: 2px solid green; */
     padding: 1% 2%;
 
     @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
-       justify-content: space-between;
+
     }
 `
 
