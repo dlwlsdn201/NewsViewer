@@ -1,6 +1,6 @@
 
 const FontSize = {
-    $DESKTOP_Title : '2rem',
+    $DESKTOP_Title : '1.2vw',
     $DESKTOP_Text : '.9rem',
     $DESKTOP_PublishedAt : '.8rem',
     $NOTEBOOK_Title : '1rem',

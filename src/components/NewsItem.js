@@ -120,6 +120,7 @@ const ThumnailImage = styled.img`
 const TitleBlock = styled.div`
     text-align: left;
     font-weight: 600;
+    width: 100%;
     margin: 0;
     padding: 0;
     flex: 0.1;
@@ -136,6 +137,7 @@ const TitleBlock = styled.div`
 
 const DescriptionBlock = styled.p`
     text-align: left;
+    width: 100%;
     margin: 1% 0;
     flex: 0.2;
     
@@ -162,6 +164,7 @@ const DescriptionBlock = styled.p`
 const PublishedDateBlock = styled.p`
     text-align: right;
     align-self: flex-end;
+    width: 100%;
     margin: 0;
     flex: 0.1;
     opacity: 0.2;

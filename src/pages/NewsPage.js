@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import NewsList from '../components/NewsList';
 import Categories from '../components/Categories';
 import styled from 'styled-components';
 import Palette from '../lib/Palette';
+import { ToggleButton } from '@material-ui/lab';
 
 const Header = styled.header`
 `;
@@ -22,6 +23,7 @@ const NewsPageContainer = styled.div`
     padding: 2% 3%;
     background: ${Palette.background};
     box-sizing: border-box;
+    overflow-y: hidden;
 `;
 
 const NewsPageInner = styled.div`
@@ -44,7 +46,7 @@ const ScrollButtonContainer = styled.div`
     
 `
 
-const ScrollTopButton = styled.div`
+const ScrollButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +56,9 @@ const ScrollTopButton = styled.div`
     margin-bottom: 3px;
     border: 1px solid white;
     opacity: ${props => props.toggle? .5 : 0};
-    transition : opacity .2s ease;
+    visibility: ${props => props.toggle ? 'visible' : 'hidden' };
+    transition : opacity .2s ease, visibility .5s ease;
+    
 
     &:hover { 
         background: ${Palette.highlight};
@@ -65,38 +69,57 @@ const ScrollTopButton = styled.div`
 `
 
 
+
 const NewsPage = ({match}) => {
     const [toggleTop, setToggleTop] = useState(null);
     const [toggleBottom, setToggleBottom] = useState(null);
-    
+    const root = document.querySelector('#root');
     const category = match.params.category || 'all';
 
-    const handleScrollTop = (type) => {
+    useEffect(() => {
+        handleUpdateScrollState();
+    });
+
+
+    const handleScrollButton = (type) => {
         if(type === 'top') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }else {
-            const root = document.querySelector('#root');
             window.scrollTo({top: root.scrollHeight, behavior: 'smooth'});
         }
     }
 
-    // const toggleTopButton = (result) => {
-    //     setToggle()
-    // }
+    
+    const handleGetWindow = (attr) => {
+        if(attr === 'Height'){
+            return window.innerHeight;
+        }
+        if(attr === 'YOffset')
+            return window.pageYOffset;
+    }
 
-    window.addEventListener('scroll', function(){
-        console.log(window.pageYOffset);
-        if(window.pageYOffset > 180 && window.pageYOffset < 2206) {
+    const handleUpdateScrollState = () => {
+        let scrollLength =  handleGetWindow('Height'); //962
+        let scrollLocation = handleGetWindow('YOffset');
+        let rootHeight = root.scrollHeight; //3005
+        let maxScrollLocation = rootHeight - scrollLength; 
+
+        if(scrollLocation > 0 && scrollLocation < maxScrollLocation) {
             setToggleTop(true);
             setToggleBottom(true);
         }
-        else if (window.pageYOffset < 180){
+        else if (scrollLocation < 1){
             setToggleTop(false);
             setToggleBottom(true);
         }else {
             setToggleBottom(false);
         }
-    })
+    }
+
+    window.addEventListener('scroll', function() {
+        handleUpdateScrollState();
+    });
+
     return (
         <NewsPageContainer>
             <Header>
@@ -108,12 +131,18 @@ const NewsPage = ({match}) => {
                 <Categories/>
                 <NewsList category={category}/>
                 <ScrollButtonContainer>
-                    <ScrollTopButton toggle={toggleTop} type='top' onClick={()=>handleScrollTop('top')}>
+                    <ScrollButton 
+                        toggle={toggleTop} 
+                        type='top' 
+                        onClick={()=>handleScrollButton('top')}>
                         Top
-                    </ScrollTopButton>
-                    <ScrollTopButton toggle={toggleBottom} type='bottom' onClick={()=>handleScrollTop('bottom')}>
+                    </ScrollButton>
+                    <ScrollButton 
+                        toggle={toggleBottom} 
+                        type='bottom' 
+                        onClick={()=>handleScrollButton('bottom')}>
                         Bottom
-                    </ScrollTopButton>
+                    </ScrollButton>
                 </ScrollButtonContainer>
             </NewsPageInner>
         </NewsPageContainer>
