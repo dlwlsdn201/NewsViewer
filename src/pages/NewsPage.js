@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Palette from '../lib/Palette';
 import FontSize from '../lib/FontSize';
 import { ToggleButton } from '@material-ui/lab';
-
+import {Boundary} from '../lib/Device';
 const Header = styled.header`
 `;
 
@@ -44,6 +44,10 @@ const ScrollButtonContainer = styled.div`
     right: 3%;
     bottom: 3%;
     font-size: ${FontSize.$BUTTON_Title};
+
+    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
+        right: 1%;
+    }
     
 `
 
@@ -66,6 +70,13 @@ const ScrollButton = styled.div`
         cursor: pointer;
         opacity : 1;
         transition : background .3s ease, opacity .3s ease ;
+    }
+
+    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
+        width: 5vw;
+        height: 5vw;
+        border-radius: 2px;
+        margin-bottom: 8px;
     }
 `
 

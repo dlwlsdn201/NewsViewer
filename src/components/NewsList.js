@@ -28,9 +28,7 @@ const NewsListWrapper = styled.ul`
     list-style: none;
     padding: 1% 2%;
     gap: 20px 10px;
-
-    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
-
+    @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
     }
 `
 

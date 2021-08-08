@@ -39,6 +39,7 @@ const NewsItemContainer = styled.a`
     text-decoration: none;
     padding: 1%;
     background: ${Palette.wrapper};
+    flex: auto;
     /* border: 1px solid green; */
 
     &:hover {
@@ -55,19 +56,10 @@ const NewsItemContainer = styled.a`
         border: 2px solid red;
     }
 
-    @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
-        /* width: 22vw; */
-        height: 35vw;
-        padding: 1.5% 1.7% 0;
-        border: 2px solid blue;
-    }
 
-    @media screen and (max-width: ${Boundary.$UNDER_TABLET}px){
-        border: 2px solid green;
-    }
-
-    @media screen and (max-width: ${Boundary.$UNDER_IPHONE5}px){
-        border: 2px solid yellow;
+    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
+        border: 0.1px solid green;
+        height: 33vh;
     }
 `;
 
@@ -96,13 +88,18 @@ const ThumbnailBlock = styled.div`
         width: 20vw;
         height: 20vw;
     }
+
 `
 ;
 const ThumnailImage = styled.img`
     min-width: 40%;
     max-width: 100%;
     max-height: 100%;
-    object-fit: fill;
+    object-fit: contain;
+
+    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
+        min-width: 100%;
+    }
 `;
 
 
@@ -121,7 +118,9 @@ const TitleBlock = styled.div`
         font-size: ${FontSize.$TABLET_Title};
     }
 
-    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){}
+    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
+        font-size: ${FontSize.$IPHONE_Title};
+    }
 `
 
 const DescriptionBlock = styled.p`
@@ -135,19 +134,9 @@ const DescriptionBlock = styled.p`
     }
     
 
-    @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
-    /* width: 22vw; */
-    font-size : ${FontSize.$TABLET_Text};
+    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
+        display: none;
     }
-
-    /* @media screen and (min-width: ${Boundary.$OVER_IPHONE5}) and (max-width: ${Boundary.$UNDER_TABLET}){
-        overflow-y: hidden;
-        margin: 0;
-    }
-
-    
-    @media screen and (max-width: ${Boundary.$UNDER_IPHONE5}){} */
-
 `
 
 const PublishedDateBlock = styled.p`
@@ -160,6 +149,10 @@ const PublishedDateBlock = styled.p`
 
     @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
         font-size : ${FontSize.$TABLET_PublishedAt};
+    }
+
+    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
+        font-size : ${FontSize.$IPHONE_PublishedAt};
     }
 
 

@@ -9,9 +9,9 @@ const FontSize = {
     $TABLET_Title : '.9rem',
     $TABLET_Text : '.7rem',
     $TABLET_PublishedAt : '.6rem',
-    $IPHONE_Title : '1rem',
-    $IPHONE_Text : '.8rem',
-    $IPHONE_PublishedAt : '.6rem',
+    $IPHONE_Title : '.1rem',
+    $IPHONE_Text : '.6rem',
+    $IPHONE_PublishedAt : '.1rem',
     $BUTTON_Title: '.8vw',
 }
 
