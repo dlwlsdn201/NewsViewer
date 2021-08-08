@@ -27,6 +27,7 @@ const NewsListWrapper = styled.ul`
     align-items: center;
     list-style: none;
     padding: 1% 2%;
+    gap: 20px 10px;
 
     @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
 
@@ -86,17 +87,7 @@ const NewsList = ({category}) => {
     // }
 
     const { articles } = response.data;
-    console.log(response.data);
     return (
-        // (loading ?
-        //     <NewsListContainer>
-        //     <NewsListWrapper>
-        //         {articles.map(article=>
-        //             <NewsItem key={article.url} article={article}/> 
-        //         )}
-        //     </NewsListWrapper>
-        // </NewsListContainer>
-        // : 
         <NewsListContainer>
             <NewsListWrapper>
                 {articles.map(article=>

@@ -40,17 +40,6 @@ const NewsItemContainer = styled.a`
     padding: 1%;
     background: ${Palette.wrapper};
     /* border: 1px solid green; */
-    & + & {
-        margin: 2% 0;
-    }
-
-    &:nth-child(3n+2){
-        margin-left: auto;
-    }
-
-    &:nth-child(3n){
-        margin-left: auto;
-    }
 
     &:hover {
         background: ${Palette.highlight};
@@ -120,27 +109,31 @@ const ThumnailImage = styled.img`
 const TitleBlock = styled.div`
     text-align: left;
     font-weight: 600;
+    width: 100%;
     margin: 0;
     padding: 0;
     flex: 0.1;
-    /* @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}){
-    } */
-    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
+    @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}px){
+        font-size: ${FontSize.$DESKTOP_Title}
+    }
+
+    @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
         font-size: ${FontSize.$TABLET_Title};
     }
 
-    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}) and (max-width: ${Boundary.$UNDER_TABLET}){}
+    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){}
 `
 
 const DescriptionBlock = styled.p`
     text-align: left;
+    width: 100%;
     margin: 1% 0;
     flex: 0.2;
     
-    /* @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}){
-        font-size: 1rem;
-    } */
-
+    @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}){
+        font-size: ${FontSize.$DESKTOP_Text}
+    }
+    
 
     @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
     /* width: 22vw; */
@@ -160,6 +153,7 @@ const DescriptionBlock = styled.p`
 const PublishedDateBlock = styled.p`
     text-align: right;
     align-self: flex-end;
+    width: 100%;
     margin: 0;
     flex: 0.1;
     opacity: 0.2;
@@ -181,7 +175,7 @@ const NewsItem = ({article, loading}) => {
         `${description.slice(0,80)}...` :
         description
 
-        console.log(`urlToImage title description description loading: ${urlToImage}, ${title}, ${description}, ${description}, ${loading}}`);
+        // console.log(`urlToImage title description description loading: ${urlToImage}, ${title}, ${description}, ${description}, ${loading}}`);
     return (
         (urlToImage && title && description && description !== "" ?
             (!loading?
