@@ -43,30 +43,37 @@ const NavMenuContainer = styled.div`
     font-size: 1.4rem;
     border-radius: 5px;
     width: 90%;
-
-    @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
-        /* width: 22vw; */
+    /* @media screen and (min-width: ${Boundary.$OVER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px){
+        width: 22vw;
         font-size : ${FontSize.$TABLET_Title};
         border: 2px solid blue;
+    } */
+
+    @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
+        /* width: 22vw; */
+        font-size : ${FontSize.$IPHONE_Text};
+        border: 2px solid green;
+        /* background: red; */
     }
 `;
 
 const NavMenuList = styled.ul`
-    width: 90%;
+    width: 100%;
     display: flex;
     list-style: none;
     color: ${Palette.fontColor};
     justify-content: space-around;
     padding: 1% 0;
+    gap: 0 2%;
     margin: 0;
-    
 `;
 
 const NavMenuItem = styled(NavLink)`
     display: flex;
     justify-content: center;
     word-break: keep-all;
-    width: 6.5vw;
+    // nav item들간의 간격 밸런스를 위해 width: auto로 해야함.
+    /* width: 6vw; */
     text-decoration: none;
     
     &::after{ 
