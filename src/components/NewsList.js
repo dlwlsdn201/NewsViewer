@@ -27,6 +27,7 @@ const NewsListWrapper = styled.ul`
     align-items: center;
     list-style: none;
     padding: 1% 2%;
+    gap: 20px 10px;
 
     @media screen and (max-width: ${Boundary.$UNDER_NOTEBOOK}){
 

@@ -3,6 +3,7 @@ import NewsList from '../components/NewsList';
 import Categories from '../components/Categories';
 import styled from 'styled-components';
 import Palette from '../lib/Palette';
+import FontSize from '../lib/FontSize';
 import { ToggleButton } from '@material-ui/lab';
 
 const Header = styled.header`
@@ -42,7 +43,7 @@ const ScrollButtonContainer = styled.div`
     z-index: 10;
     right: 3%;
     bottom: 3%;
-
+    font-size: ${FontSize.$BUTTON_Title};
     
 `
 
@@ -51,8 +52,8 @@ const ScrollButton = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    width: 3vw;
-    height: 3vw;
+    width: 3.5vw;
+    height: 3.5vw;
     margin-bottom: 3px;
     border: 1px solid white;
     opacity: ${props => props.toggle? .5 : 0};
@@ -78,18 +79,18 @@ const NewsPage = ({match}) => {
 
     useEffect(() => {
         handleUpdateScrollState();
+
     });
-
-
+    
     const handleScrollButton = (type) => {
+        console.log('handleScrollButton');
         if(type === 'top') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 50, behavior: 'smooth' });
         }else {
             window.scrollTo({top: root.scrollHeight, behavior: 'smooth'});
         }
     }
 
-    
     const handleGetWindow = (attr) => {
         if(attr === 'Height'){
             return window.innerHeight;
@@ -103,22 +104,20 @@ const NewsPage = ({match}) => {
         let scrollLocation = handleGetWindow('YOffset');
         let rootHeight = root.scrollHeight; //3005
         let maxScrollLocation = rootHeight - scrollLength; 
-
-        if(scrollLocation > 0 && scrollLocation < maxScrollLocation) {
+        console.log('scrollLocation:', scrollLocation);
+        console.log('maxScrollLocation:', maxScrollLocation);
+        if(scrollLocation > 0 && scrollLocation < (maxScrollLocation - 5)) {
             setToggleTop(true);
             setToggleBottom(true);
         }
-        else if (scrollLocation < 1){
+        else if (scrollLocation > 0 && scrollLocation > (maxScrollLocation - 5)){
+            setToggleTop(true);
+            setToggleBottom(false);
+        }else if (scrollLocation < 1 ) {
             setToggleTop(false);
             setToggleBottom(true);
-        }else {
-            setToggleBottom(false);
         }
     }
-
-    window.addEventListener('scroll', function() {
-        handleUpdateScrollState();
-    });
 
     return (
         <NewsPageContainer>

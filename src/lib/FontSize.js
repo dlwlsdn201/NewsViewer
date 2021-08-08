@@ -12,6 +12,7 @@ const FontSize = {
     $IPHONE_Title : '1rem',
     $IPHONE_Text : '.8rem',
     $IPHONE_PublishedAt : '.6rem',
+    $BUTTON_Title: '.8vw',
 }
 
 export default FontSize;

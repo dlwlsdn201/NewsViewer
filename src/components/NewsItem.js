@@ -40,17 +40,6 @@ const NewsItemContainer = styled.a`
     padding: 1%;
     background: ${Palette.wrapper};
     /* border: 1px solid green; */
-    & + & {
-        margin: 2% 0;
-    }
-
-    &:nth-child(3n+2){
-        margin-left: auto;
-    }
-
-    &:nth-child(3n){
-        margin-left: auto;
-    }
 
     &:hover {
         background: ${Palette.highlight};
