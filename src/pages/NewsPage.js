@@ -74,21 +74,45 @@ const ScrollButton = styled.div`
     border-radius: 2px;
     margin-bottom: 8px;
   }
+
+  @media screen and (min-width: ${Boundary.$UNDER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px) {
+    width: 3vw;
+    height: 3.5vw;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
 `;
+
 
 const NewsPage = ({ match }) => {
   const [toggleTop, setToggleTop] = useState(null);
   const [toggleBottom, setToggleBottom] = useState(null);
+  const [deviceType, setDevice] = useState(null);
   const root = document.querySelector("#root");
   const category = match.params.category || "all";
 
+  const screenWidth = window.outerWidth;
+
   useEffect(() => {
+    handleDeviceType();
     handleUpdateScrollState();
     window.addEventListener("scroll", handleUpdateScrollState);
     return () => {
       window.removeEventListener("scroll", () => console.log("scroll off"));
     };
   }, []);
+  
+  const handleDeviceType = () => {
+    if (screenWidth < 768) {
+      setDevice("mobile");
+    } else if (768 < screenWidth && screenWidth < 1060) {
+      setDevice("tablet");
+    } else if (1060 < screenWidth && screenWidth < 1920) {
+      setDevice("notebook");
+    } else {
+      setDevice("desktop");
+    }
+  }
 
   const handleScrollButton = (type) => {
     if (type === "top") {
@@ -106,7 +130,6 @@ const NewsPage = ({ match }) => {
   };
 
   const handleUpdateScrollState = () => {
-    console.log("handleUpdateScrollState");
     let scrollLength = handleGetWindow("Height"); // 스크롤바 길이 : 962
     let scrollLocation = handleGetWindow("YOffset"); // 스크롤바 좌표
 
@@ -138,7 +161,7 @@ const NewsPage = ({ match }) => {
       </Header>
       <NewsPageInner>
         <Categories />
-        <NewsList category={category} />
+        <NewsList category={category} deviceType={deviceType}/>
         <ScrollButtonContainer>
           <ScrollButton
             toggle={toggleTop}
