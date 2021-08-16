@@ -50,12 +50,14 @@ const NavMenuContainer = styled.div`
     } */
 
     @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
-        /* width: 22vw; */
         font-size : ${FontSize.$IPHONE_Text};
-        border: 2px solid green;
-        /* background: red; */
+    }
+
+    @media screen and (min-width: ${Boundary.$UNDER_TABLET}px) and (max-width: ${Boundary.$UNDER_NOTEBOOK}px) {
+        font-size : ${FontSize.$TABLET_Title};
     }
 `;
+
 
 const NavMenuList = styled.ul`
     width: 100%;

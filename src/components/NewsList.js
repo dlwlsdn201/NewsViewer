@@ -32,9 +32,7 @@ const NewsListWrapper = styled.ul`
     }
 `
 
-
-
-const NewsList = ({category}) => {
+const NewsList = ({category, deviceType}) => {
 
     const API_KEY = 'f72290af08794eafb2893b02b4f21a5e';
 
@@ -89,7 +87,7 @@ const NewsList = ({category}) => {
         <NewsListContainer>
             <NewsListWrapper>
                 {articles.map(article=>
-                    <NewsItem key={article.url} article={article} loading={loading}/> 
+                    <NewsItem key={article.url} article={article} deviceType={deviceType} loading={loading}/> 
                 )}
             </NewsListWrapper>
         </NewsListContainer>
