@@ -85,18 +85,24 @@ const ScrollButton = styled.div`
 const NewsPage = ({match}) => {
     const [toggleTop, setToggleTop] = useState(null);
     const [toggleBottom, setToggleBottom] = useState(null);
+    const [scrollHeight, setScrollHeight] = useState(null);
     const root = document.querySelector('#root');
     const category = match.params.category || 'all';
 
     useEffect(() => {
         handleUpdateScrollState();
+        setScrollHeight(root.scrollHeight);
 
-    });
-    
+        window.addEventListener("scroll",handleUpdateScrollState);
+          return () => {
+            window.removeEventListener("scroll", ()=>console.log('scroll off'));
+          };
+    }, []);
+
     const handleScrollButton = (type) => {
         console.log('handleScrollButton');
         if(type === 'top') {
-            window.scrollTo({ top: 50, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }else {
             window.scrollTo({top: root.scrollHeight, behavior: 'smooth'});
         }
@@ -111,12 +117,13 @@ const NewsPage = ({match}) => {
     }
 
     const handleUpdateScrollState = () => {
+        console.log('handleUpdateScrollState');
         let scrollLength =  handleGetWindow('Height'); //962
         let scrollLocation = handleGetWindow('YOffset');
+        console.log('scrollLength:', scrollLength);
+        console.log('scrollLocation:', scrollLocation);
         let rootHeight = root.scrollHeight; //3005
         let maxScrollLocation = rootHeight - scrollLength; 
-        console.log('scrollLocation:', scrollLocation);
-        console.log('maxScrollLocation:', maxScrollLocation);
         if(scrollLocation > 0 && scrollLocation < (maxScrollLocation - 5)) {
             setToggleTop(true);
             setToggleBottom(true);
