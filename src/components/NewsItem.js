@@ -4,28 +4,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import Palette from '../lib/Palette';
 import {Device, Boundary} from '../lib/Device';
 import FontSize from '../lib/FontSize';
-
-// const Device = {
-//     // device-width
-//     $IPHONE5 : 320,
-//     $MOBILE : 480,
-//     $TABLET : 768,
-//     $NOTEBOOK: 1060,
-//     $DESKTOP: 1920,
-// }
-
-
-
-// const Boundary = {
-//     $OVER_IPHONE5 : `${Device.$IPHONE5 + 1}px`,
-//     $OVER_MOBILE : `${Device.$MOBILE + 1}px`,
-//     $OVER_TABLET : `${Device.$TABLET + 1}px`,
-//     $OVER_NOTEBOOK : `${Device.$NOTEBOOK + 1}px`,
-//     $UNDER_DESKTOP : `${Device.$DESKTOP}px`,
-//     $UNDER_NOTEBOOK : `${Device.$NOTEBOOK}px`,
-//     $UNDER_TABLET : `${Device.$TABLET}px`,
-//     $UNDER_IPHONE5 : `${Device.$IPHONE5}px`,
-// }
+import { FileX } from "phosphor-react";
 
 
 const NewsItemContainer = styled.a`
@@ -40,25 +19,22 @@ const NewsItemContainer = styled.a`
     padding: 1%;
     background: ${Palette.wrapper};
     flex: auto;
-    /* border: 1px solid green; */
 
     &:hover {
         background: ${Palette.highlight};
         transform: translateY(-10px) scale(1.05);
         transition: transform .8s ease, background .5s ease;
-        /* transition: ; */
     }
 
     @media screen and (min-width: ${Boundary.$OVER_NOTEBOOK}px){
         /* width: 24vw; */
         height: 28vw;
         padding: 1.5% 1.7% 0;
-        border: 2px solid red;
     }
 
 
     @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
-        border: 0.1px solid green;
+        /* border: 0.1px solid green; */
         height: 33vh;
     }
 `;
@@ -153,6 +129,7 @@ const PublishedDateBlock = styled.p`
 
     @media screen and (min-width: ${Boundary.$OVER_IPHONE5}px) and (max-width: ${Boundary.$UNDER_TABLET}px){
         font-size : ${FontSize.$IPHONE_PublishedAt};
+        letter-spacing: -0.2px;
     }
 
 
@@ -163,11 +140,13 @@ const NewsItem = ({article, loading}) => {
     
     const { urlToImage, url, title, description, publishedAt} = article;
 
-
     const summaryDesc = description && description.length > 80?
         `${description.slice(0,80)}...` :
         description
 
+    const summaryTitle = title && title.length > 40 ?
+        `${title.slice(0,49)}...` :
+        title
         // console.log(`urlToImage title description description loading: ${urlToImage}, ${title}, ${description}, ${description}, ${loading}}`);
     return (
         (urlToImage && title && description && description !== "" ?
@@ -175,10 +154,13 @@ const NewsItem = ({article, loading}) => {
             <NewsItemContainer href={url} target="_blank">
                 <ContentWrapper>
                     <TitleBlock>
-                        {title}
+                        {summaryTitle}
                     </TitleBlock>
                     <ThumbnailBlock>
-                        <ThumnailImage src={urlToImage}/>
+                        {urlToImage !== undefined ?
+                        <ThumnailImage src={urlToImage}/> :
+                        <FileX size={24}/>
+                        }
                     </ThumbnailBlock>
                     <DescriptionBlock>
                         {summaryDesc}

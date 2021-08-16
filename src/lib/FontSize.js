@@ -11,7 +11,7 @@ const FontSize = {
     $TABLET_PublishedAt : '.6rem',
     $IPHONE_Title : '.1rem',
     $IPHONE_Text : '.6rem',
-    $IPHONE_PublishedAt : '.1rem',
+    $IPHONE_PublishedAt : '.05rem',
     $BUTTON_Title: '.8vw',
 }
 
